@@ -1,30 +1,24 @@
-# FanScape Sports App 🏆
+# FanScape Sports App
 
 ![Python](https://img.shields.io/badge/python-3.11-blue?logo=python\&logoColor=white)
 ![Flask](https://img.shields.io/badge/Flask-2.3-green?logo=flask\&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLite-3.41-orange?logo=sqlite\&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-Repo-black?logo=github\&logoColor=white)
 
-## Overview 🌟
+## Overview
 
-FanScape Sports App is a **Flask-based web application** designed for passionate sports fans to track their favorite games, teams, sports, and competitions. Users can **register, log in, save games and teams**, and view a personalized **dashboard**. The app integrates with **live sports APIs** while maintaining a database for user-specific data.
+FanScape Sports App is a **Flask-based web application** designed for sports enthusiasts to track games, teams, and competitions. Users can **register, log in, save games and teams**, and view a personalized **dashboard**. The application integrates with **live sports APIs** while maintaining a database for user-specific data.
 
-![Sports Banner](https://media.giphy.com/media/26tOZ42Mg6pbTUPHW/giphy.gif)
+## Features
 
----
+* **User Authentication:** Secure registration, login, and logout with hashed passwords.
+* **User Profiles:** Personalized dashboards showing saved games and favorite teams.
+* **Game Tracking:** Save and follow games across different sports and leagues.
+* **Team Tracking:** Save favorite teams and access related information.
+* **Sports & Competitions:** Structured tables for sports and competitions linked to games.
+* **API Integration:** Fetches dynamic sports and game data from external sources.
 
-## Features ✨
-
-* **🔐 User Authentication:** Secure registration, login, and logout with hashed passwords.
-* **📊 User Profiles:** Personalized dashboards showing saved games and favorite teams.
-* **🏟️ Game Tracking:** Save and follow games across different sports and leagues.
-* **⚽ Team Tracking:** Save favorite teams and access their related information.
-* **🏅 Sports & Competitions:** Structured tables for sports and competitions linked to games.
-* **🌐 API Integration:** Fetches dynamic sports and game data from external sources.
-
----
-
-## Project Structure 🗂️
+## Project Structure
 
 ```
 fanscape/
@@ -39,9 +33,7 @@ fanscape/
 └── __pycache__/         # Auto-generated Python cache files
 ```
 
----
-
-## Database Models 💾
+## Database Models
 
 ### User
 
@@ -84,9 +76,7 @@ fanscape/
 * **game\_saves:** Links users to saved games
 * **team\_saves:** Links users to saved teams
 
----
-
-## Installation 🚀
+## Installation
 
 1. Clone the repository:
 
@@ -112,11 +102,7 @@ pip install -r requirements.txt
 python app.py
 ```
 
-> The database file `mydb.db` will be generated automatically.
-
----
-
-## Running the App 🖥️
+## Running the App
 
 1. Start the Flask development server:
 
@@ -126,9 +112,7 @@ python app.py
 
 2. Open your browser and navigate to `http://127.0.0.1:5000`.
 
----
-
-## API Endpoints 🔗
+## API Endpoints
 
 ### User Authentication
 
@@ -145,39 +129,27 @@ python app.py
 * Users can save games and teams (API routes to be implemented)
 * Fetch saved games/teams for each user
 
----
-
-## Security Considerations 🔒
+## Security Considerations
 
 * Passwords are hashed using **Bcrypt** before storing in the database.
 * Sessions are stored server-side using **Flask-Session**.
 * Sensitive routes are protected by session checks.
-* Always validate input from users to prevent injection attacks.
+* Validate user input to prevent injection attacks.
 
----
-
-## Future Improvements 🌱
+## Future Improvements
 
 * Implement **JWT authentication** for API access.
 * Add routes for saving/fetching games and teams dynamically.
 * Integrate **live sports API** for real-time updates.
-* Enhance front-end dashboard with **React** or modern JS frameworks.
+* Enhance front-end dashboard with modern JS frameworks.
 * Add **search and filtering** for sports, competitions, games, and teams.
 
----
-
-## Contributing 🤝
+## Contributing
 
 * Fork the repository and create a branch for your feature.
 * Make commits with clear messages.
 * Submit a pull request to the main repository.
 
----
-
-## License 📄
+## License
 
 This project is licensed under the **MIT License**.
-
----
-
-![Cheers GIF](https://media.giphy.com/media/xT0xezQGU5xCDJuCPe/giphy.gif)
