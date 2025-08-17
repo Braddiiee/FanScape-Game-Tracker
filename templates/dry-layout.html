@@ -20,25 +20,6 @@
 
     <body>
 
-        <div class="header">
-            <div class="logo">
-                <img src="/static/images/logo.png" alt="">
-                <!-- <h2>Fan<span>Scape</span></h2> -->
-            </div>
-
-            <div class="links">
-                <ul>
-                    <li><a href="{{ url_for('home') }}">Home</a></li>
-                    <li><a href="{{ url_for('games') }}">Games</a></li>
-                    <li><a href="{{ url_for('teams') }}">Teams</a></li>
-                    <li><a href="{{ url_for('competitions') }}">Competitions</a></li>
-                </ul>
-            </div>
-
-            <div class="profile">
-                <a href="{{ url_for('profile') }}"><i class="fa-regular fa-user"></i></a>
-            </div>
-        </div>
 
         <main>
             {% block content %}
@@ -53,7 +34,6 @@
             </p>
         </footer>
         
-
     </body>
 
 </html>

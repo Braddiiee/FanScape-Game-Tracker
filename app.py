@@ -78,10 +78,21 @@ def home():
     else:  # user not logged in
         return render_template("index.html")  # make sure 'templates/index.html' exists
 
-    
+@app.route("/games")
+def games():
+    return render_template("games.html")
+
+@app.route("/teams")
+def teams():
+    return render_template("teams.html")  
+
+@app.route("/competitions")
+def competitions():
+    return render_template("competitions.html")  
+
 # Receive data from the register route using the POST method  
 @app.route('/register', methods=['POST'])
-def register_user():
+def register():
     data = request.get_json()
     hashed_password = bycrypt.generate_password_hash(data['password']).decode('utf-8')
 

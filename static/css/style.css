@@ -8,6 +8,7 @@ body {
     font-family: 'Poppins';
 }
 
+
 .header{
     display: flex;
     flex-direction: row;
@@ -83,4 +84,318 @@ body {
 
 .header .links ul li a:hover, .header .profile a:hover{
     color: #0cb1f8;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f5f5f5;
+    text-align: center;
+    padding: 1rem;
+}
+
+#featured {
+    display: flex;
+}
+
+#featured h1 {
+    color: black;
+}
+
+#featured .featured_games {
+    display: flex;
+}
+
+#featured .featured_games h1 {
+    color: darkblue;
+}
+
+#featured .featured_games .featured_football_games {
+    display: flex;
+}
+
+#featured .featured_games .featured_football_games .featured_football_game {
+    display: flex;
+}
+
+#featured .featured_games .featured_football_games .featured_football_game .date_time {
+    color: gray;
+}
+
+#featured .featured_games .featured_football_games .featured_football_game .main {
+    display: flex;
+}
+
+#featured .featured_games .featured_football_games .featured_football_game .main .home_team {
+    display: flex;
+}
+
+#featured .featured_games .featured_football_games .featured_football_game .main .home_team img {
+    outline: 1px solid black;
+}
+
+#featured .featured_games .featured_football_games .featured_football_game .main .home_team h2 {
+    color: green;
+}
+
+#featured .featured_games .featured_football_games .featured_football_game .main .score {
+    display: flex;
+}
+
+#featured .featured_games .featured_football_games .featured_football_game .main .score span {
+    color: red;
+}
+
+#featured .featured_games .featured_football_games .featured_football_game .main .away_team {
+    display: flex;
+}
+
+#featured .featured_games .featured_football_games .featured_football_game .main .away_team img {
+    outline: 1px solid black;
+}
+
+#featured .featured_games .featured_football_games .featured_football_game .main .away_team h2 {
+    color: blue;
+}
+
+#featured .featured_games .featured_football_games .line {
+    background: black;
+}
+
+#featured .featured_games .featured_basketball_games {
+    display: flex;
+}
+
+#featured .featured_games .featured_basketball_games .featured_basketball_game {
+    display: flex;
+}
+
+#featured .featured_games .featured_basketball_games .featured_basketball_game .date_time {
+    color: gray;
+}
+
+#featured .featured_games .featured_basketball_games .featured_basketball_game .main {
+    display: flex;
+}
+
+#featured .featured_games .featured_basketball_games .featured_basketball_game .main .home_team {
+    display: flex;
+}
+
+#featured .featured_games .featured_basketball_games .featured_basketball_game .main .home_team img {
+    outline: 1px solid black;
+}
+
+#featured .featured_games .featured_basketball_games .featured_basketball_game .main .home_team h2 {
+    color: green;
+}
+
+#featured .featured_games .featured_basketball_games .featured_basketball_game .main .score {
+    display: flex;
+}
+
+#featured .featured_games .featured_basketball_games .featured_basketball_game .main .score span {
+    color: red;
+}
+
+#featured .featured_games .featured_basketball_games .featured_basketball_game .main .away_team {
+    display: flex;
+}
+
+#featured .featured_games .featured_basketball_games .featured_basketball_game .main .away_team img {
+    outline: 1px solid black;
+}
+
+#featured .featured_games .featured_basketball_games .featured_basketball_game .main .away_team h2 {
+    color: blue;
+}
+
+#my_teams {
+    display: flex;
+}
+
+#my_teams h1 {
+    color: black;
+}
+
+#my_teams .my_team_games {
+    display: flex;
+}
+
+#my_teams .my_team_games .my_team {
+    display: flex;
+}
+
+#my_teams .my_team_games .my_team .home_team {
+    display: flex;
+}
+
+#my_teams .my_team_games .my_team .home_team img {
+    outline: 1px solid black;
+}
+
+#my_teams .my_team_games .my_team .home_team h2 {
+    color: green;
+}
+
+#my_teams .my_team_games .my_team .score {
+    display: flex;
+}
+
+#my_teams .my_team_games .my_team .score span {
+    color: red;
+}
+
+#my_teams .my_team_games .my_team .away_team {
+    display: flex;
+}
+
+#my_teams .my_team_games .my_team .away_team img {
+    outline: 1px solid black;
+}
+
+#my_teams .my_team_games .my_team .away_team h2 {
+    color: blue;
+}
+
+#my_leagues {
+    display: flex;
+}
+
+#my_leagues h1 {
+    color: black;
+}
+
+#my_leagues .my_league_games {
+    display: flex;
+}
+
+#my_leagues .my_league_games .my_football_leagues {
+    display: flex;
+}
+
+#my_leagues .my_league_games .my_football_leagues .my_league {
+    display: flex;
+}
+
+#my_leagues .my_league_games .my_football_leagues .my_league .my_league_list {
+    display: flex;
+}
+
+#my_leagues .my_league_games .my_football_leagues .my_league .my_league_list .league_name {
+    display: flex;
+}
+
+#my_leagues .my_league_games .my_football_leagues .my_league .my_league_list .league_name img {
+    outline: 1px solid black;
+}
+
+#my_leagues .my_league_games .my_football_leagues .my_league .my_league_list .league_name h2 {
+    color: purple;
+}
+
+#my_leagues .my_league_games .my_football_leagues .my_league .my_league_list .my_league_teams {
+    display: flex;
+}
+
+#my_leagues .my_league_games .my_football_leagues .my_league .my_league_list .my_league_teams .team-score {
+    display: flex;
+}
+
+#my_leagues .my_league_games .my_football_leagues .my_league .my_league_list .my_league_teams .team-score .home_team {
+    display: flex;
+}
+
+#my_leagues .my_league_games .my_football_leagues .my_league .my_league_list .my_league_teams .team-score .home_team img {
+    outline: 1px solid black;
+}
+
+#my_leagues .my_league_games .my_football_leagues .my_league .my_league_list .my_league_teams .team-score .home_team h2 {
+    color: green;
+}
+
+#my_leagues .my_league_games .my_football_leagues .my_league .my_league_list .my_league_teams .team-score .score {
+    display: flex;
+}
+
+#my_leagues .my_league_games .my_football_leagues .my_league .my_league_list .my_league_teams .team-score .score span {
+    color: red;
+}
+
+#my_leagues .my_league_games .my_football_leagues .my_league .my_league_list .my_league_teams .team-score .away_team {
+    display: flex;
+}
+
+#my_leagues .my_league_games .my_football_leagues .my_league .my_league_list .my_league_teams .team-score .away_team img {
+    outline: 1px solid black;
+}
+
+#my_leagues .my_league_games .my_football_leagues .my_league .my_league_list .my_league_teams .team-score .away_team h2 {
+    color: blue;
+}
+
+#my_leagues .my_league_games .my_basketball_leagues {
+    display: flex;
+}
+
+#my_leagues .my_league_games .my_basketball_leagues .my_league {
+    display: flex;
+}
+
+#my_leagues .my_league_games .my_basketball_leagues .my_league .my_league_list {
+    display: flex;
+}
+
+#my_leagues .my_league_games .my_basketball_leagues .my_league .my_league_list .league_name {
+    display: flex;
+}
+
+#my_leagues .my_league_games .my_basketball_leagues .my_league .my_league_list .league_name img {
+    outline: 1px solid black;
+}
+
+#my_leagues .my_league_games .my_basketball_leagues .my_league .my_league_list .league_name h2 {
+    color: purple;
+}
+
+#my_leagues .my_league_games .my_basketball_leagues .my_league .my_league_list .my_league_teams {
+    display: flex;
+}
+
+#my_leagues .my_league_games .my_basketball_leagues .my_league .my_league_list .my_league_teams .team-score {
+    display: flex;
+}
+
+#my_leagues .my_league_games .my_basketball_leagues .my_league .my_league_list .my_league_teams .team-score .home_team {
+    display: flex;
+}
+
+#my_leagues .my_league_games .my_basketball_leagues .my_league .my_league_list .my_league_teams .team-score .home_team img {
+    outline: 1px solid black;
+}
+
+#my_leagues .my_league_games .my_basketball_leagues .my_league .my_league_list .my_league_teams .team-score .home_team h2 {
+    color: green;
+}
+
+#my_leagues .my_league_games .my_basketball_leagues .my_league .my_league_list .my_league_teams .team-score .score {
+    display: flex;
+}
+
+#my_leagues .my_league_games .my_basketball_leagues .my_league .my_league_list .my_league_teams .team-score .score span {
+    color: red;
+}
+
+#my_leagues .my_league_games .my_basketball_leagues .my_league .my_league_list .my_league_teams .team-score .away_team {
+    display: flex;
+}
+
+#my_leagues .my_league_games .my_basketball_leagues .my_league .my_league_list .my_league_teams .team-score .away_team img {
+    outline: 1px solid black;
+}
+
+#my_leagues .my_league_games .my_basketball_leagues .my_league .my_league_list .my_league_teams .team-score .away_team h2 {
+    color: blue;
 }
