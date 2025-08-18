@@ -138,15 +138,15 @@ def logout():
     return jsonify({"message": "You have been successfully logged out."})
 
 # Receive data from the profile route using the POST method  
-@app.route('/profile', methods=['POST'])
+@app.route('/profile', methods=['POST', 'GET'])
 def profile():
 
-    if not session['user_id']:
-        return jsonify({"error": "Unauthorized"}), 401
+    # if not session['user_id']:
+    #     return jsonify({"error": "Unauthorized"}), 401
     
-    user = User.query.get(session['user_id'])
+    # user = User.query.get(session['user_id'])
 
-    return render_template('dashboard.html', id=user.id, username=user.username, email=user.email)
+    return render_template('profile.html')
 
 
 if __name__ == "__main__":
