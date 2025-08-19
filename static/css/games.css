@@ -1,37 +1,28 @@
-.featured_games {
+.featured_game {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #f9f9f9;
 }
 
-.featured_games .featured_game {
+/* Competition Section */
+.featured_game .competition {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     gap: 1rem;
 }
 
-.featured_games .featured_game .add_game {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.featured_games .featured_game .add_game button {
-    cursor: pointer;
-}
-
-.featured_games .featured_game .content {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.featured_games .featured_game .content .competition {
+.featured_game .competition .comp-abt {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-.featured_games .featured_game .content .competition .comp_logo {
+.featured_game .competition .comp-abt .comp_logo {
     width: 50px;
     height: 50px;
     object-fit: contain;
@@ -39,63 +30,119 @@
     border-radius: 8px;
 }
 
-.featured_games .featured_game .content .competition p {
+.featured_game .competition .comp-abt p {
     margin: 0;
     font-size: 0.9rem;
 }
 
-.featured_games .featured_game .content .competition .sport {
+.featured_game .competition .comp-abt .sport {
     font-style: italic;
     color: gray;
 }
 
-.featured_games .featured_game .content .game {
+/* Add Game Button */
+.featured_game .add_game {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.featured_game .add_game button {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.featured_game .add_game button:hover {
+    background-color: #0056b3;
+}
+
+/* Game Section */
+.featured_game .game {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
 }
 
-.featured_games .featured_game .content .game .date_time {
-    font-size: 0.85rem;
-    color: gray;
-}
-
-.featured_games .featured_game .content .game .main {
+/* Game Header */
+.featured_game .game .game-head {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.featured_games .featured_game .content .game .main .home_team,
-.featured_games .featured_game .content .game .main .away_team {
+.featured_game .game .game-head .live {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: red;
+    font-weight: bold;
+}
+
+.featured_game .game .game-head .live .pulse {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.8); opacity: 0.7; }
+    50% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.8); opacity: 0.7; }
+}
+
+.featured_game .game .game-head .date_time span {
+    font-size: 0.85rem;
+    color: gray;
+}
+
+/* Main Game Content */
+.featured_game .game .main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Teams */
+.featured_game .game .main .home_team,
+.featured_game .game .main .away_team {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.25rem;
 }
 
-.featured_games .featured_game .content .game .main .home_team .home_team_logo,
-.featured_games .featured_game .content .game .main .away_team .away_team_logo {
+.featured_game .game .main .home_team .home_team_logo,
+.featured_game .game .main .away_team .away_team_logo {
     width: 40px;
     height: 40px;
     object-fit: contain;
     border-radius: 50%;
 }
 
-.featured_games .featured_game .content .game .main .home_team_name,
-.featured_games .featured_game .content .game .main .away_team_name {
+.featured_game .game .main .home_team_name,
+.featured_game .game .main .away_team_name {
     font-size: 0.9rem;
     text-align: center;
 }
 
-.featured_games .featured_game .content .game .main .score {
+/* Score */
+.featured_game .game .main .score {
     display: flex;
     gap: 0.25rem;
     font-weight: bold;
     align-items: center;
 }
 
-.featured_games .featured_game .content .game .main .score span {
+.featured_game .game .main .score span {
     color: red;
 }
 
@@ -105,102 +152,148 @@
     gap: 2rem;
 }
 
-.saved_games .saved_game {
+/* Each Saved Game Card */
+.saved_game {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    border: 1px solid #ccc;
+    gap: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     padding: 1rem;
-    border-radius: 8px;
+    background-color: #fefefe;
 }
 
-.saved_games .saved_game .add_game {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.saved_games .saved_game .add_game button {
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-}
-
-.saved_games .saved_game .content {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.saved_games .saved_game .content .competition {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.saved_games .saved_game .content .competition .comp_logo {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    border-radius: 8px;
-    border: 1px solid black;
-}
-
-.saved_games .saved_game .content .competition p {
-    margin: 0;
-    font-size: 0.9rem;
-}
-
-.saved_games .saved_game .content .competition .sport {
-    font-style: italic;
-    color: gray;
-}
-
-.saved_games .saved_game .content .game {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.saved_games .saved_game .content .game .date_time {
-    font-size: 0.85rem;
-    color: gray;
-}
-
-.saved_games .saved_game .content .game .main {
+/* Competition Section */
+.saved_game .competition {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
 }
 
-.saved_games .saved_game .content .game .main .home_team,
-.saved_games .saved_game .content .game .main .away_team {
+.saved_game .competition .comp-abt {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.saved_game .competition .comp-abt .comp_logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+.saved_game .competition .comp-abt p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.saved_game .competition .comp-abt .sport {
+    font-style: italic;
+    color: gray;
+}
+
+/* Add Game Button (if present) */
+.saved_game .add_game {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.saved_game .add_game button {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.saved_game .add_game button:hover {
+    background-color: #0056b3;
+}
+
+/* Game Section */
+.saved_game .game {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Game Header */
+.saved_game .game .game-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.saved_game .game .game-head .live {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: red;
+    font-weight: bold;
+}
+
+.saved_game .game .game-head .live .pulse {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.8); opacity: 0.7; }
+    50% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.8); opacity: 0.7; }
+}
+
+.saved_game .game .game-head .date_time span {
+    font-size: 0.85rem;
+    color: gray;
+}
+
+/* Main Game Content */
+.saved_game .game .main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Teams */
+.saved_game .game .main .home_team,
+.saved_game .game .main .away_team {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.25rem;
 }
 
-.saved_games .saved_game .content .game .main .home_team .home_team_logo,
-.saved_games .saved_game .content .game .main .away_team .away_team_logo {
+.saved_game .game .main .home_team .home_team_logo,
+.saved_game .game .main .away_team .away_team_logo {
     width: 40px;
     height: 40px;
     object-fit: contain;
     border-radius: 50%;
 }
 
-.saved_games .saved_game .content .game .main .home_team_name,
-.saved_games .saved_game .content .game .main .away_team_name {
+.saved_game .game .main .home_team_name,
+.saved_game .game .main .away_team_name {
     font-size: 0.9rem;
     text-align: center;
 }
 
-.saved_games .saved_game .content .game .main .score {
+/* Score (if present) */
+.saved_game .game .main .score {
     display: flex;
     gap: 0.25rem;
     font-weight: bold;
     align-items: center;
-}
-
-.saved_games .saved_game .content .game .main .score span {
     color: red;
 }
