@@ -11,3 +11,29 @@ export interface Sport  {
     icon: React.ComponentType<{ className?: string; size?: number }>;
 
 }
+
+export type Team = {
+    team_id: string;
+    team_name: string;
+}
+
+export type MatchScore = {
+    home_score: number;
+    away_score: number;
+}
+
+export interface Match {
+    match_id: number;
+    match_title: string;
+    competition_id: string;
+    competition_title: string;
+    sport_name: string;
+    league_abbreviation: string;
+    home_team: Team;
+    away_team: Team;
+    match_status: string;
+    match_date: string; // ISO string
+    match_time_utc: string;
+    live_duration_minutes?: number; // optional
+    match_score?: MatchScore; // optional
+}
