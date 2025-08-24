@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import Logo from "../../assets/image.png";
+import Logo from "../../assets/logo.png";
 import {X, Menu} from "lucide-react"
 
 
@@ -61,7 +61,7 @@ export default function Navbar() {
                     <div className="flex items-center m-5">
                         <img src={Logo} alt="Logo" className="h-10 w-auto" />
                     </div>
-                    
+
                     <div className="flex flex-col gap-4">
                         <Link to="/matches" className="hover:text-gray-600">Matches</Link>
                         <Link to="/teams" className="hover:text-gray-600">Teams</Link>
