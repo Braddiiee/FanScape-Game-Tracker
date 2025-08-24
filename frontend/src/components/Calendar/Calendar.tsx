@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import type { Date } from "../../types";
 
 export default function Calendar() {
 
-    const dates = [
+    const dates: Date[] = [
         { label: "24 Tue", value: "2025-07-24" },
         { label: "25 Wed", value: "2025-07-25" },
         { label: "26 Thu", value: "2025-07-26" },
