@@ -17,9 +17,15 @@ export type Team = {
     team_name: string;
 }
 
+export type Penalties = {
+    home_team: number;
+    away_team: number;
+}
+
 export type MatchScore = {
-    home_score: number | null;
-    away_score: number | null;
+    home_score: number | null | string;
+    away_score: number | null | string;
+    penalties?: Penalties;
 }
 
 export interface Match {
@@ -34,7 +40,7 @@ export interface Match {
     match_status: string;
     match_date: string; // ISO string
     match_time_utc: string;
-    live_duration_minutes?: number; // optional
+    live_duration_minutes?: number | null; // optional
     match_score: MatchScore; // optional
 }
 
