@@ -37,13 +37,13 @@ const MatchCard: React.FC<MatchCardProps> = ({
                 {/* Home Team's name and score  */}
                 <div className="flex justify-between gap-4">
                     <div className="m-2 font-bold">{homeTeam.team_name}</div>
-                    <div>{matchScore.home_score}</div>
+                    <div>{matchScore.home_score ?? 0}</div>
                 </div>
 
                 {/* Away Team's name and score  */}
                 <div className="flex justify-between gap-4">
                     <div className="m-2 font-bold">{awayTeam.team_name}</div>
-                    <div>{matchScore.away_score}</div>
+                    <div>{matchScore.away_score ?? 0}</div>
                 </div>
 
             </div>
