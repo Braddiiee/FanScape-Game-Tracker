@@ -1,35 +1,58 @@
+import React from "react";
 import MatchCard from "../components/MatchCard";
-import  matches  from "../data/matches";
+import matchesData from "../data/matches";
+import type { Match, MatchScore } from "../types";
 
-const Matches = () => {
-    const leagues = [...new Set(matches.map((m) => m.competition_title ))];
-
-    return (
-        <div className="space-y-8">
-            {leagues.map((league) => (
-                <div key={league}>
-                    <h2>{league}</h2>
-                    <div className="space-y-4">
-                        {
-                            matches
-                            .filter((match) => match.competition_title === league)
-                            .map((match) => (
-                                <MatchCard
-                                    key={match.match_id}
-                                    homeTeam={match.home_team}
-                                    awayTeam={match.away_team}
-                                    matchScore = {match.match_score}
-                                    status={match.match_status}
-                                    liveDuration={match.live_duration_minutes}
-                                    matchTime={match.match_time_utc}
-                                />
-                            ))
-                        }
-                    </div>
-                </div>
-            ))}
-        </div>
-    )
+// Type for raw match_score from JSON
+interface RawMatchScore {
+  home_score: number | string | null;
+  away_score: number | string | null;
 }
+
+// Convert raw match_score to typed MatchScore
+const parseScore = (score?: RawMatchScore): MatchScore => ({
+
+  home_score:
+    score?.home_score === null || score?.home_score === undefined
+      ? null
+      : Number(score.home_score),
+  away_score:
+    score?.away_score === null || score?.away_score === undefined
+      ? null
+      : Number(score.away_score),
+});
+
+// Matches array
+const matches: Match[] = matchesData as Match[];
+
+const Matches: React.FC = () => {
+  const leagues = Array.from(new Set(matches.map((m) => m.competition_title)));
+
+  return (
+    <div className="space-y-8">
+      {leagues.map((league) => (
+        <div key={league}>
+          <h2>{league}</h2>
+          <div className="space-y-4">
+            {matches
+              .filter((match) => match.competition_title === league)
+              .map((match) => (
+                <MatchCard
+                  key={match.match_id}
+                  homeTeam={match.home_team}
+                  awayTeam={match.away_team}
+                  matchScore={parseScore(match.match_score)}
+                  matchStatus={match.match_status}
+                  liveMinutes={match.live_duration_minutes}
+                  matchTime={match.match_time_utc}
+                  matchDate={match.match_date}
+                />
+              ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export default Matches;
