@@ -1,26 +1,8 @@
 import React from "react";
 import MatchCard from "../components/MatchCard";
 import matchesData from "../data/matches";
-import type { Match, MatchScore } from "../types";
+import type { Match} from "../types";
 
-// Type for raw match_score from JSON
-interface RawMatchScore {
-  home_score: number | string | null;
-  away_score: number | string | null;
-}
-
-// Convert raw match_score to typed MatchScore
-const parseScore = (score?: RawMatchScore): MatchScore => ({
-
-  home_score:
-    score?.home_score === null || score?.home_score === undefined
-      ? null
-      : Number(score.home_score),
-  away_score:
-    score?.away_score === null || score?.away_score === undefined
-      ? null
-      : Number(score.away_score),
-});
 
 // Matches array
 const matches: Match[] = matchesData as Match[];
@@ -41,7 +23,7 @@ const Matches: React.FC = () => {
                   key={match.match_id}
                   homeTeam={match.home_team}
                   awayTeam={match.away_team}
-                  matchScore={parseScore(match.match_score)}
+                  matchScore={match.match_score}
                   matchStatus={match.match_status}
                   liveMinutes={match.live_duration_minutes}
                   matchTime={match.match_time_utc}
