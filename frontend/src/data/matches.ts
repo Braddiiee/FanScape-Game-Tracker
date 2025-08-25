@@ -1,4 +1,6 @@
-const matches = [
+import type { Match } from "../types/index";
+
+const matches : Match[] = [
   {
     "match_id": 1001,
     "match_title": "Premier League Matchweek 3",
