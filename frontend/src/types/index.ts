@@ -18,8 +18,8 @@ export type Team = {
 }
 
 export type MatchScore = {
-    home_score: number;
-    away_score: number;
+    home_score: number | null;
+    away_score: number | null;
 }
 
 export interface Match {
@@ -35,5 +35,13 @@ export interface Match {
     match_date: string; // ISO string
     match_time_utc: string;
     live_duration_minutes?: number; // optional
-    match_score?: MatchScore; // optional
+    match_score: MatchScore; // optional
 }
+
+
+type MenuItem = {
+    name: string;
+    slug: string;
+}
+
+export type Teams = Record<string, MenuItem[]>;
