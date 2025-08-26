@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
-import { teams } from '../data/menus'; 
-import matches from '../data/matches'; 
+import { teams } from '../../data/menus'; 
+import matches from '../../data/matches'; 
 
 const TeamPage = () => {
     
