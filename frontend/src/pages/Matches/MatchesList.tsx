@@ -1,13 +1,13 @@
 import React from "react";
-import MatchCard from "../components/MatchCard";
-import matchesData from "../data/matches";
-import type { Match} from "../types";
+import MatchCard from "../../components/MatchCard";
+import matchesData from "../../data/matches";
+import type { Match} from "../../types";
 
 
 // Matches array
 const matches: Match[] = matchesData as Match[];
 
-const Matches: React.FC = () => {
+const MatchesList : React.FC = () => {
   const leagues = Array.from(new Set(matches.map((m) => m.competition_title)));
 
   return (
@@ -37,4 +37,4 @@ const Matches: React.FC = () => {
   );
 };
 
-export default Matches;
+export default MatchesList;
