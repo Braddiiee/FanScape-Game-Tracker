@@ -23,8 +23,8 @@ export default function Calendar() {
         const dates = [];
 
         for (let i = startIndex; i < startIndex + visibleCount; i++) {
-            const d = newDate(base);
-            d.setDate(base.getDate() + 1);
+            const d = new Date(base);
+            d.setDate(base.getDate() + i);
             dates.push(formatDate(d))
         }
         return dates;
