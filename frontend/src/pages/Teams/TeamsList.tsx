@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { teams } from '../../data/menus'; 
 import matches from '../../data/matches'; 
+import MatchCard from '../../components/MatchCard';
 
 const TeamPage = () => {
     
@@ -42,18 +43,16 @@ const TeamPage = () => {
             {teamMatches.length > 0 ? (
                 <ul className="space-y-4">
                     {teamMatches.map(match => (
-                        <li key={match.match_id} className="p-4 border rounded-lg shadow-sm">
-                            <h3 className="text-xl font-medium">{match.match_title}</h3>
-                            <p className="text-gray-500">
-                                {match.home_team.team_name} vs {match.away_team.team_name}
-                            </p>
-                            <p className="text-sm text-gray-400">
-                                {match.match_date} at {match.match_time_utc}
-                            </p>
-                            <p className="text-sm text-gray-400">
-                                Status: {match.match_status}
-                            </p>
-                        </li>
+                        <MatchCard
+                            key={match.match_id}
+                            homeTeam={match.home_team}
+                            awayTeam={match.away_team}
+                            matchScore={match.match_score}
+                            matchStatus={match.match_status}
+                            liveMinutes={match.live_duration_minutes}
+                            matchTime={match.match_time_utc}
+                            matchDate={match.match_date}
+                        /> 
                     ))}
                 </ul>
             ) : (
