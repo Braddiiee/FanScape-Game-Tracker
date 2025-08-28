@@ -1,9 +1,12 @@
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+
 import Home from "./pages/Home"
 import Matches from "./pages/Matches";
 import Competitions from "./pages/Competitions";
 import TeamPage from "./pages/Teams/TeamsList";
-import Profile from "./pages/Profile"
+import Profile from "./pages/Profile";
+
+import Navbar from "./components/Navbar/Navbar";
 
 import SignIn from "./pages/Auth/SignIn";
 import Join from "./pages/Auth/Join";
@@ -16,8 +19,9 @@ function App() {
     return (
         <FiltersProvider>
             <Router>
-                <div className="p-4">
-                    <h1 className="text-2xl font-bold mb-4">Sports DashBoard</h1>
+                <div>
+                    
+                    <Navbar />
 
                     {/* === GLOBAL FILTERS === */}
                     <div className="mb-6 space-y-4">
