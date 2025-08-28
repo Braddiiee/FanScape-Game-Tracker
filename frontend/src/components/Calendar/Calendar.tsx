@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import  useFilters  from "../../context/useFilters";
 
 export default function Calendar() {
+
+    // Global date
+    const { date: selectedDate, setDate } = useFilters();
 
     // How many days should be displayed at once
     const visibleCount = 5;
@@ -50,14 +54,18 @@ export default function Calendar() {
 
                 {/* Dates */}
                 <ul className="flex gap-4">
-                {dates.map((d) => (
-                    <li
-                    key={d.value}
-                    className="list-none border border-gray-300 px-3 py-1 rounded-md hover:border-gray-500 cursor-pointer"
-                    >
-                    {d.label}
-                    </li>
-                ))}
+                    {dates.slice(startIndex, startIndex + visibleCount).map((d) => (
+                        <li
+                            key={d.value}
+                            onClick={() => setDate(d.value)} // Update global state
+                            className={`list-none border border-gray-300 px-3 py-1 rounded-md cursor-pointer ${
+                                selectedDate === d.value ? "bg-blue-500 text-white" : ""
+                            }`}
+                        >
+                            {d.label}
+
+                        </li>
+                    ))}
                 </ul>
 
                 {/* Right Arrow */}
