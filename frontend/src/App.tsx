@@ -15,7 +15,8 @@ function App() {
                     <Route path="/matches" element={<Matches />} />
                     <Route path="/competitions" element={<Competitions />} />
 
-
+                    {/* Dynamic team route */}
+                    <Route path="/teams/:sport/:slug"  element={<TeamPage />} />
 
                 </Routes>
             </div>
