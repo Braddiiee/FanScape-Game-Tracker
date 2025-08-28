@@ -31,7 +31,7 @@ const mockTeams: Teams[] = [
   { id: 't5', name: 'Knicks', logoUrl: 'https://placehold.co/50x50/A0D9F7/0A2330?text=NYK' },
 ];
 
-const App = () => {
+const Profile = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-200 p-4 font-inter">
       {/* Inter font should be loaded in public/index.html or similar global CSS */}
@@ -45,4 +45,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Profile;
