@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Volleyball, ChevronLeft, ChevronRight } from "lucide-react";
 import { FaFootballBall, FaBasketballBall, FaBaseballBall, FaTableTennis, FaSkating, FaGolfBall, FaMedal , FaMitten, FaBiking } from "react-icons/fa";
+import  useFilters  from "../../context/useFilters.ts"
+
 
 import type { Sport } from  "../../types";
 
@@ -20,6 +22,7 @@ export default function SportsSelector() {
     ];
 
 
+    const {sport: selectedSport, setSport} = useFilters();
     const [startIndex, setStartIndex] = useState(0);
 
     return(
@@ -32,15 +35,21 @@ export default function SportsSelector() {
                 <ChevronLeft className="w-5 h-5" />
             </button>
 
-            {/* Dates */}
-                <div className="grid grid-cols-2 gap-4">
-                    {sports.map((sport) => (
-                        <div key={sport.value} className="flex items-center gap-2 border p-2 rounded-lg">
-                        <sport.icon size={24} />
-                        <span>{sport.label}</span>
-                        </div>
-                    ))}
-                </div>
+            {/* Sports grid */}
+            <div className="grid grid-cols-2 gap-4">
+                {sports.slice(startIndex, startIndex + 4).map((s) => (
+                    <div
+                        key={s.value}
+                        onClick={() => setSport(s.value)} 
+                        className={`flex items-center gap-2 border p-2 rounded-lg cursor-pointer ${
+                            selectedSport === s.value ? "bg-blue-500 text-white" : ""
+                        }`}
+                    >
+                        <s.icon size={24} />
+                        <span>{s.label}</span>
+                    </div>
+                ))}
+            </div>
 
             {/* Right Arrow */}
             <button className="p-2"
