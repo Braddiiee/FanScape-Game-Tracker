@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Volleyball, ChevronLeft, ChevronRight } from "lucide-react";
-import { FaFootballBall, FaBasketballBall, FaBaseballBall, FaTableTennis, FaSkating, FaGolfBall, FaMedal , FaMitten, FaBiking } from "react-icons/fa";
+import { FaFutbol, FaFootballBall, FaBasketballBall, FaBaseballBall, FaTableTennis, FaSkating, FaGolfBall, FaMedal , FaMitten, FaBiking } from "react-icons/fa";
 import  useFilters  from "../../context/useFilters.ts"
 
 
@@ -9,7 +9,8 @@ import type { Sport } from  "../../types";
 export default function SportsSelector() {
 
     const sports: Sport[] = [
-        { label: "Football", value: "football", icon: FaFootballBall },
+        { label: "Football", value: "football", icon: FaFutbol },
+        { label: "American Football", value: "football", icon: FaFootballBall },
         { label: "Basketball", value: "basketball", icon: FaBasketballBall },
         { label: "Baseball", value: "baseball", icon: FaBaseballBall },
         { label: "Volleyball", value: "volleyball", icon: Volleyball }, 
@@ -26,7 +27,7 @@ export default function SportsSelector() {
     const [startIndex, setStartIndex] = useState(0);
 
     return(
-        <div className="flex items-center justify-between">
+        <div className="flex flex-row items-center justify-between mt-4">
         
             {/* Left Arrow   */}
             <button className="p-2" 
@@ -36,12 +37,12 @@ export default function SportsSelector() {
             </button>
 
             {/* Sports grid */}
-            <div className="grid grid-cols-2 gap-4">
-                {sports.slice(startIndex, startIndex + 4).map((s) => (
+            <div className="flex flex-row">
+                {sports.slice(startIndex, startIndex + 7).map((s) => (
                     <div
                         key={s.value}
                         onClick={() => setSport(s.value)} 
-                        className={`flex items-center gap-2 border p-2 rounded-lg cursor-pointer ${
+                        className={`flex items-center gap-2 border p-2 rounded-lg cursor-pointer m-5 ${
                             selectedSport === s.value ? "bg-blue-500 text-white" : ""
                         }`}
                     >
