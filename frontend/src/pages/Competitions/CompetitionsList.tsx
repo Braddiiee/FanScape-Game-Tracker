@@ -1,5 +1,6 @@
 import matchesData from "../../data/matches";
 import type { Match } from "../../types";
+import MatchCard from "../../components/MatchCard";
 
 const matches: Match[] = matchesData as Match[];
 
@@ -15,7 +16,7 @@ const CompetitionsList: React.FC = () => {
                     <h2 className="text-xl font-bold">{competition}</h2>
                     <div className="space-y-4">
                     {matches
-                    .filter((match) => match.competition_title === competitions)
+                    .filter((match) => match.competition_title === competition)
                     .map((match) => (
                         <MatchCard
                         key={match.match_id}
