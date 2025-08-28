@@ -3,7 +3,11 @@ import Home from "./pages/Home"
 import Matches from "./pages/Matches";
 import Competitions from "./pages/Competitions";
 import TeamPage from "./pages/Teams/TeamsList";
-import { FiltersProvider } from "./context/FiltersContext";
+
+
+import SportsSelector from "./components/Sports/SportsSelector";
+import Calendar from "./components/Calendar/Calendar";
+import { FiltersProvider } from "./context/FiltersProvider";
 
 function App() {
     return (
@@ -11,6 +15,12 @@ function App() {
             <Router>
                 <div className="p-4">
                     <h1 className="text-2xl font-bold mb-4">Sports DashBoard</h1>
+
+                    {/* === GLOBAL FILTERS === */}
+                    <div className="mb-6 space-y-4">
+                        <SportsSelector />
+                        <Calendar />
+                    </div>
 
                     <Routes>
                         <Route path="/" element={<Home />} />
