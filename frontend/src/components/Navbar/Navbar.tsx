@@ -44,7 +44,7 @@ export default function Navabar() {
                             {/* Toggle teams mega-menu onclick */}
                             <button
                                 onClick={() => setTeamsOpen(!teamsOpen)}
-                                className="hover:text-gray-600"
+                                className="hover:text-gray-600 flex flex-row text-base"
                             >
                                 Teams
                                 <span>{teamsOpen ? <ChevronUp /> : <ChevronDown />}</span>
@@ -54,16 +54,16 @@ export default function Navabar() {
                             {/* Teams - Mega Panel */}
                             {/* Positioned Relative to its parent */}
                             <div
-                                className={`absolute left-0 top-full mt-2 w-[680px] rounded bg-white shadow-lg p-6 z-50 ${teamsOpen ? "block" : "hidden" }`}
+                                className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[750px] rounded bg-white border border-black p-6 z-50 ${teamsOpen ? "block" : "hidden" }`}
                             >
-                                <div className="grid grid-cols-3 gap-6">
+                                <div className="grid grid-cols-4 gap-12">
 
                                     {/* Object.keys(teams).map(...) helps me loop through teams and get key alone */}
                                     {Object.keys(teams).map((sport) => (
 
                                         // Column for one sport
                                         <div key={sport}>
-                                            <h4 className="mb-2 font-semibols">{sport}</h4>
+                                            <h2 className="mb-2 font-semibold">{sport}</h2>
 
                                             <ul className="space-y-1">
 
@@ -72,7 +72,7 @@ export default function Navabar() {
                                                     <li key={team.slug}>
                                                         <Link
                                                             to={`/teams/${team.slug}`}
-                                                            className="block ttext-sm hover:text-gray-700"
+                                                            className="block text-sm hover:text-blue-400"
                                                         >
                                                             {team.name}
                                                         </Link>
@@ -99,22 +99,22 @@ export default function Navabar() {
                             {/* Toggle comps mega-menu onclick */}
                             <button
                                 onClick={() => setCompsOpen(!compsOpen)}
-                                className="hover:text-gray-600"
+                                className="hover:text-gray-600 flex flex-row text-base"
                             >
                                 Competitions
-                                <span>{teamsOpen ? <ChevronUp /> : <ChevronDown />}</span>
+                                <span>{compsOpen ? <ChevronUp /> : <ChevronDown />}</span>
                             </button>  
 
                             {/* Competitions Mega Panel */}
                             <div
-                                className={`absolute left-0 top-full mt-2 w-[680px] rounded bg-white shadow-lg p-6 z-50 ${compsOpen ? "block" : "hidden" } `}
+                                className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[750px] rounded bg-white border border-black p-6 z-50 ${compsOpen ? "block" : "hidden" } `}
                             >
                                 {/* Object.keys(competitions).map(...) helps me loop through teams and get key alone */}
-                                <div className="grid grid-cols-3 gap-6">
+                                <div className="grid grid-cols-4 gap-12">
                                     {Object.keys(competitions).map((competition) => (
 
                                         <div key={competition}>
-                                            <h4 className="mb-2 font-semibols">{competition}</h4>
+                                            <h2 className="mb-2 font-semibold">{competition}</h2>
 
                                             <ul className="space-y-1">
 
@@ -123,7 +123,7 @@ export default function Navabar() {
                                                     <li key={competition.slug}>
                                                         <Link
                                                             to={`/teams/${competition.slug}`}
-                                                            className="block ttext-sm hover:text-gray-700"
+                                                            className="block text-sm hover:text-blue-400"
                                                         >
                                                             {competition.name}
                                                         </Link>
