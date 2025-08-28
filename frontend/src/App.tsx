@@ -29,6 +29,7 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/matches" element={<Matches />} />
                         <Route path="/competitions" element={<Competitions />} />
+                        {/* Profile Route */}
                         <Route path="/profile" element={<Profile />} />
                         
 

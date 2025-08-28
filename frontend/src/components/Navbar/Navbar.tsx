@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from"react";
-import {Menu, X, ChevronDown, ChevronUp} from "lucide-react";
+import {Menu, X, ChevronDown, ChevronUp, User} from "lucide-react";
 import Logo from "../../assets/logo.png";
 import { teams, competitions } from "../../data/menus";
 
@@ -274,6 +274,13 @@ export default function Navabar() {
                             className="bg-black text-white px-5 py-2 rounded hover:bg-gray-800 text-center"
                         >
                             Join
+                        </Link>
+
+                        <Link
+                            to="/profile"
+                            className="hidden bg-black text-white px-5 py-2 rounded hover:bg-gray-800 text-center"
+                        >
+                            <User />
                         </Link>
                     </div>
 
