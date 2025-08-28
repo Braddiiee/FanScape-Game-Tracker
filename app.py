@@ -8,7 +8,7 @@ app = Flask(__name__) # Set up the app as a flask app that expects the name of f
 
 # Database 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydb.db'
-app.config['SQLALCHEMY_TRACK_NOTIFICATIONS'] = False
+app.config['SQLALCHEMY_TRACK_MOTIFICATIONS'] = False
 
 # Security key & sessions 
 app.config['SECRET_KEY'] = "supersecretkey"
@@ -16,7 +16,7 @@ app.config['SESSION_TYPE'] = "filesystem"
 
 # Initialize extensions
 db = SQLAlchemy(app)
-bycrypt = Bcrypt(app)
+bcrypt = Bcrypt(app)
 Session(app)
 
 # Create a class defining the user with each column defined with it's data type and whether it is unique or nullable
@@ -44,8 +44,8 @@ class Games(db.Model):
 
 # Creates a table side by side showing the user and the games that they have saved
 game_saves = db.Table('g_saves',
-    db.Column('user.id', db.Integer, db.ForeignKey('user.id')),
-    db.Column('game.id', db.Integer, db.ForeignKey('games.id'))
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('game_id', db.Integer, db.ForeignKey('games.id'))
 )
 
 # Creates a relationship returning username and the saved user 
@@ -63,7 +63,7 @@ team_saves = db.Table('t_saves',
 )
 
 # Returns username and team that they have saved
-saved_teams = db.relationship('Teams', secondary='game_saves', backref='saved_by')
+saved_teams = db.relationship('Teams', secondary='team_saves', backref='saved_by')
 
 # Create all of the tables
 with app.app_context():
@@ -94,13 +94,13 @@ def competitions():
 @app.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
-    hashed_password = bycrypt.generate_password_hash(data['password']).decode('utf-8')
+    hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
 
     # Add all the fields from the register form into the User table in the database
     new_user = User(
         name = data['name'],
-        username = data['username'],
-        password = hashed_password,
+        user_name = data['username'],
+        password_hash = hashed_password,
         email = data['email'],
         birth_day = data['birth_day'],
         birth_month = data['birth_month'],
