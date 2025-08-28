@@ -5,6 +5,8 @@ import Competitions from "./pages/Competitions";
 import TeamPage from "./pages/Teams/TeamsList";
 import Profile from "./pages/Profile"
 
+import SignIn from "./pages/Auth/SignIn";
+import Join from "./pages/Auth/Join";
 
 import SportsSelector from "./components/Sports/SportsSelector";
 import Calendar from "./components/Calendar/Calendar";
@@ -32,6 +34,10 @@ function App() {
 
                         {/* Dynamic team route */}
                         <Route path="/teams/:sport/:slug"  element={<TeamPage />} />
+
+                        {/* Sign In and Join */}
+                        <Route path="/sign-in" element={<SignIn />} />
+                        <Route path="/join" element={<Join />} />
 
                     </Routes>
                 </div>
