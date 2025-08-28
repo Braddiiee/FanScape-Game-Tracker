@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
-import logo from '../assets/fanscape-logo.png'; // Make sure to replace this with your logo's path
+import Logo from '../../assets/logo.png'; 
 
 const LogIn= () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-white p-4">
       <div className="w-full max-w-sm p-8 space-y-6 bg-white rounded-lg shadow-md border border-gray-200">
         <div className="flex flex-col items-center">
-          <img src={logo} alt="FanScape Logo" className="h-16 w-16 mb-2" />
+          <img src={Logo} alt="FanScape Logo" className="h-16 w-16 mb-2" />
           <h1 className="text-2xl font-bold text-gray-800">FanScape</h1>
         </div>
         <h2 className="text-center text-2xl font-semibold text-gray-700">Login</h2>
