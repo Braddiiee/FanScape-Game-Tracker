@@ -18,7 +18,7 @@ export default function Navabar() {
         <nav className="w-full shadow-sm bg-white">
 
             {/* Desktop Menu */}
-            <div className="flex justify-betwween items-center px-5 py-4">
+            <div className="flex justify-between items-center px-5 py-4">
 
                 {/* Logo */}
                 <div className="flex items-center m-5">
@@ -160,6 +160,12 @@ export default function Navabar() {
                     >
                         Join
                     </Link>   
+                    <Link
+                        to="/profile"
+                        className="hidden bg-black text-white px-5 py-2 rounded hover:bg-gray-800 text-center"
+                    >
+                        <User />
+                    </Link>
                 </div>
 
                 {/* Mobile Hamburger Button */}
