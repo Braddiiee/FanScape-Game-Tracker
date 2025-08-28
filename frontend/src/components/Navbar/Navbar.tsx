@@ -147,7 +147,7 @@ export default function Navabar() {
 
                 {/* Desktop Register Buttons  */}
 
-                <div className="hidden md: flex items-center gap-4 m-5">
+                <div className="hidden md:flex items-center gap-4 m-5">
                     <Link
                         to="/sign-in"
                         className="border border-gray-200 px-5 py-2 rounded hover:bg-gray-100"
