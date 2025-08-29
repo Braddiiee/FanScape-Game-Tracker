@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
 
 import Home from "./pages/Home";
@@ -16,7 +17,16 @@ import Join from "./pages/Auth/Join";
 import { FiltersProvider } from "./context/FiltersProvider";
 import { AuthProvider } from "./context/AuthContext";
 
-// Layout for all normal pages
+import { Navigate } from 'react-router-dom';
+import { useAuth } from './context/useAuth'
+
+function RequireAuth({ children }: { children: ReactNode }) {
+  const { user, isLoading } = useAuth();
+  if (isLoading) return null;
+  return user ? children : <Navigate to="/sign-in" replace />;
+}
+
+
 function MainLayout() {
   return (
     <>
@@ -46,7 +56,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/matches" element={<Matches />} />
                 <Route path="/competitions" element={<Competitions />} />
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
                 <Route path="/teams/:sport/:slug" element={<TeamPage />} />
             </Route>
 
