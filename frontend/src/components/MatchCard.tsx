@@ -36,26 +36,30 @@ const MatchCard: React.FC<MatchCardProps> = ({
 
     return (
 
-        <div className="flex border border-gray-300 rounded-md p-6 gap-6 bg-white w-full sm:w-[45%] lg:w-[30%] hover:shadow-md transition">
+        <div className="flex border border-gray-300 rounded-md p-6 gap-2 bg-white w-full sm:w-[45%] lg:w-[30%] hover:shadow-md transition">
 
             {/* Team name and scores */}
-            <div className="flex flex-col gap-4 w-full">
+            <div className="flex flex-col gap-4 w-full min-w-0">
                 {/* Home Team */}
                 <div className="flex items-center gap-3">
-                <TeamLogo teamName={homeTeam.team_name} sport={league} />
-                <span className="text-gray-900">
+                    <div className="w-8 h-8 flex-shrink-0">
+                        <TeamLogo teamName={homeTeam.team_name} sport={league} />
+                    </div>
+                <span className="text-gray-900 truncate text-sm">
                     {homeTeam.team_name}
                 </span>
-                <span className="ml-auto text-lg font-bold">{matchScore.home_score}</span>
+                <span className="ml-auto text-md font-bold">{matchScore.home_score}</span>
                 </div>
 
                 {/* Away Team */}
                 <div className="flex items-center gap-3">
-                <TeamLogo teamName={awayTeam.team_name} sport={league} />
-                <span className="text-gray-900">
+                    <div className="w-8 h-8 flex-shrink-0">
+                        <TeamLogo teamName={homeTeam.team_name} sport={league} />
+                    </div>
+                <span className="text-gray-900 truncate text-sm">
                     {awayTeam.team_name}
                 </span>
-                <span className="ml-auto text-lg font-bold">{matchScore.away_score}</span>
+                <span className="ml-auto text-md font-bold flex-shrink-0">{matchScore.away_score}</span>
                 </div>
 
             </div>
@@ -63,7 +67,7 @@ const MatchCard: React.FC<MatchCardProps> = ({
             {/* Divider */}
             <div className="w-px bg-gray-300 mx-4"></div>
 
-            <div className="flex flex-col items-center justify-center gap-2 min-w-[90px]">
+            <div className="flex flex-col items-center justify-center gap-2 min-w-[100px] flex-shrink-0 ">
                 {isLive && (
                 <div className="flex items-center gap-1 text-red-600 text-sm font-bold">
                     <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
