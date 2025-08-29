@@ -18,9 +18,9 @@ const MatchesList: React.FC = () => {
     return (
         <div className="space-y-8">
             {leagues.map((league) => (
-                <div key={league}>
-                    <h2 className="text-xl font-semibold">{league}</h2>
-                    <div className="space-y-4">
+                <div key={league} className="bg-white p-6 rounded-xl border border-gray-200 m-5">
+                    <h2 className="text-xl font-semibold m-5">{league}</h2>
+                    <div className="flex flex-wrap justify-center gap-6">
                         {filteredMatches
                             .filter((match) => match.competition_title === league)
                             .map((match) => (
