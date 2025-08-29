@@ -3,7 +3,7 @@ import { FaBasketballBall, FaFutbol } from "react-icons/fa";
 
 interface TeamLogoProps {
     teamName?: string;
-    sport: string;
+    sport?: string;
     size?: string;
 }
 
