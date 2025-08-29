@@ -14,6 +14,7 @@ import SignIn from "./pages/Auth/SignIn";
 import Join from "./pages/Auth/Join";
 
 import { FiltersProvider } from "./context/FiltersProvider";
+import { AuthProvider } from "./context/AuthContext";
 
 // Layout for all normal pages
 function MainLayout() {
@@ -36,26 +37,28 @@ function AuthLayout() {
 
 function App() {
   return (
-    <FiltersProvider>
-      <Router>
-        <Routes>
-          {/* All pages that show navbar, calendar, sports selector */}
-          <Route element={<MainLayout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/matches" element={<Matches />} />
-            <Route path="/competitions" element={<Competitions />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/teams/:sport/:slug" element={<TeamPage />} />
-          </Route>
+    <AuthProvider>
+        <FiltersProvider>
+        <Router>
+            <Routes>
+            {/* All pages that show navbar, calendar, sports selector */}
+            <Route element={<MainLayout />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/matches" element={<Matches />} />
+                <Route path="/competitions" element={<Competitions />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/teams/:sport/:slug" element={<TeamPage />} />
+            </Route>
 
-          {/* Register/Login pages without navbar/calendar */}
-          <Route element={<AuthLayout />}>
-            <Route path="/sign-in" element={<SignIn />} />
-            <Route path="/join" element={<Join />} />
-          </Route>
-        </Routes>
-      </Router>
-    </FiltersProvider>
+            {/* Register/Login pages without navbar/calendar */}
+            <Route element={<AuthLayout />}>
+                <Route path="/sign-in" element={<SignIn />} />
+                <Route path="/join" element={<Join />} />
+            </Route>
+            </Routes>
+        </Router>
+        </FiltersProvider>
+    </AuthProvider>
   );
 }
 
