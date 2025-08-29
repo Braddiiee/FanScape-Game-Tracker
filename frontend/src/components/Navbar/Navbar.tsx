@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from"react";
+import { useAuth } from "../../context/useAuth";
 import {Menu, X, ChevronDown, ChevronUp, User} from "lucide-react";
 import Logo from "../../assets/logo.png";
 import { teams, competitions } from "../../data/menus";
@@ -14,6 +15,8 @@ export default function Navabar() {
     const [compsOpen, setCompsOpen] = useState(false);
     const [mobileTeamsOpen, setMobileTeamsOpen] = useState(false);
     const [mobileCompsOpen, setMobileCompsOpen ] = useState(false);
+
+    const { user, logout } = useAuth();
 
     const sportIcons: Record<string, React.ReactNode> = {
         Football: <FaFutbol className="inline-block mr-2" />,
@@ -162,24 +165,40 @@ export default function Navabar() {
                 {/* Desktop Register Buttons  */}
 
                 <div className="hidden md:flex items-center gap-4 m-5">
-                    <Link
-                        to="/sign-in"
-                        className="border border-gray-200 px-5 py-2 rounded hover:bg-gray-100"
-                    >
-                        Sign In
-                    </Link>
-                    <Link
-                        to="/join"
-                        className="bg-black text-white px-5 py-2 rounded hover:bg-gray-800"
-                    >
-                        Join
-                    </Link>   
-                    <Link
-                        to="/profile"
-                        className="hidden bg-black text-white px-5 py-2 rounded hover:bg-gray-800 text-center"
-                    >
-                        <User />
-                    </Link>
+
+                    {user ? (
+                        <>
+                            <Link
+                                to="/profile"
+                                className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium"
+                            >
+                                <User />
+                            </Link>
+                            <button
+                                onClick={logout}
+                                className="text-gray-700 hover:text-red-600 px-3 py-2 text-sm font-medium"
+                            >
+                                Logout
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <Link
+                                to="/sign-in"
+                                className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium"
+                            >
+                                Sign In
+                            </Link>
+                            <Link
+                                to="/join"
+                                className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700"
+                            >
+                                Join
+                            </Link>
+                        </>
+                    )}
+
+
                 </div>
 
                 {/* Mobile Hamburger Button */}
@@ -282,26 +301,37 @@ export default function Navabar() {
                     {/* Mobile Auth Buttons (same styling as desktop but stacked) */}
                     {/* These are the 'Sign In' and 'Join' buttons, styled for the mobile view. */}
                     <div className="flex flex-col gap-3 mt-4">
-                        <Link
-                            to="/sign-in"
-                            className="border border-gray-200 px-5 py-2 rounded hover:bg-gray-100 text-center"
-                        >
-                            Sign In
-                        </Link>
-
-                        <Link
-                            to="/join"
-                            className="bg-black text-white px-5 py-2 rounded hover:bg-gray-800 text-center"
-                        >
-                            Join
-                        </Link>
-
-                        <Link
-                            to="/profile"
-                            className="hidden bg-black text-white px-5 py-2 rounded hover:bg-gray-800 text-center"
-                        >
-                            <User />
-                        </Link>
+                        {user ? (
+                            <div className="py-2">
+                                <Link
+                                to="/profile"
+                                className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600"
+                                >
+                                     <User />
+                                </Link>
+                                <button
+                                onClick={logout}
+                                className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-red-600"
+                                >
+                                Logout
+                                </button>
+                            </div>
+                            ) : (
+                            <div className="py-2">
+                                <Link
+                                to="/sign-in"
+                                className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600"
+                                >
+                                Sign In
+                                </Link>
+                                <Link
+                                to="/join"
+                                className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600"
+                                >
+                                Join
+                                </Link>
+                            </div>
+                        )}
                     </div>
 
 
