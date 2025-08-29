@@ -3,6 +3,7 @@ import { useState } from"react";
 import {Menu, X, ChevronDown, ChevronUp, User} from "lucide-react";
 import Logo from "../../assets/logo.png";
 import { teams, competitions } from "../../data/menus";
+import { FaFutbol, FaBasketballBall, FaBaseballBall,  FaHockeyPuck } from "react-icons/fa";
 
 
 export default function Navabar() {
@@ -13,6 +14,13 @@ export default function Navabar() {
     const [compsOpen, setCompsOpen] = useState(false);
     const [mobileTeamsOpen, setMobileTeamsOpen] = useState(false);
     const [mobileCompsOpen, setMobileCompsOpen ] = useState(false);
+
+    const sportIcons: Record<string, React.ReactNode> = {
+        Football: <FaFutbol className="inline-block mr-2" />,
+        Basketball: <FaBasketballBall className="inline-block mr-2" />,
+        Baseball: <FaBaseballBall className="inline-block mr-2" />,
+        Hockey: <FaHockeyPuck className="inline-block mr-2" />,
+    };
 
     return (
         <nav className="w-full shadow-sm bg-white">
@@ -63,7 +71,13 @@ export default function Navabar() {
 
                                         // Column for one sport
                                         <div key={sport}>
-                                            <h2 className="mb-2 font-semibold">{sport}</h2>
+                                            <h2 className="mb-2 font-semibold flex items-center">
+                                                <span className="w-6 h-6 flex items-center justify-center rounded bg-gray-200 mr-2">
+                                                    {sportIcons[sport]}
+                                                </span>
+                                                {sport}
+                                            </h2>
+
 
                                             <ul className="space-y-1">
 
