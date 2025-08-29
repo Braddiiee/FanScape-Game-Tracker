@@ -72,9 +72,9 @@ export default function Navabar() {
                                         // Column for one sport
                                         <div key={sport}>
                                             <h2 className="mb-2 font-semibold flex items-center">
-                                                <span className="w-6 h-6 flex items-center justify-center rounded bg-gray-200 mr-2">
+                                                <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center rounded mr-1">
                                                     {sportIcons[sport]}
-                                                </span>
+                                                </div>
                                                 {sport}
                                             </h2>
 
