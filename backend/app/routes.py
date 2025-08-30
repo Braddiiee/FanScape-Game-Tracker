@@ -40,10 +40,10 @@ def register():
 # -----------------------------
 # Login
 # -----------------------------
-@api.route("login", methods=["POST"])
+@api.route("/login", methods=["POST"])
 def login():
     data = request.get_json()
-    user = User.query.filter_by(username=data['username']).first()
+    user = User.query.filter_by(email=data['email']).first()
     if not user:
         return jsonify({"error": "User not found"}), 404
     
@@ -74,6 +74,7 @@ def profile():
     
     user = User.query.get(user_id)
     return jsonify({
+        "id": user.id,
         "name": user.name,
         "username": user.username,
         "email": user.email,
