@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import type {ReactNode } from 'react';
 import { AuthContext } from './useAuth';
 import type  { AuthContextType } from './useAuth';
+import { authApi } from '../services/api';
 
 // Define what user data looks like
 interface User {
@@ -32,18 +33,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // Function to check if user is already authenticated
   const checkAuthStatus = async () => {
     try {
-      // Call your backend /profile endpoint to see if user is logged in
-      const response = await fetch('http://localhost:5000/api/profile', {
-        credentials: 'include', // This sends cookies/session data
-      });
+        const { data } = await authApi.profile();
+        setUser(data);
       
-      if (response.ok) {
-        const userData = await response.json();
-        setUser(userData);
-      }
-    } catch (error) {
+    } catch {
       // User is not logged in, which is fine
-      console.log(`User not authenticated ${error}`);
+      setUser(null)
     }
   };
 
@@ -53,25 +48,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setError(null);
     
     try {
-      const response = await fetch('http://localhost:5000/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include', // Important for session cookies
-        body: JSON.stringify({ username: email, password }),
-      });
-
-      if (response.ok) {
-        await response.json();
-        // After successful login, fetch user profile
-        await checkAuthStatus();
-      } else {
-        const errorData = await response.json();
-        setError(errorData.error || 'Login failed');
-      }
-    } catch (error) {
-      setError(`Network error. Please try again. ${error}`);
+      await authApi.login(email, password);
+      await checkAuthStatus();
+    } catch (err) {
+        const error = err as Error;
+        console.error(error.message);
     } finally {
       setIsLoading(false);
     }
@@ -81,46 +62,28 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const register = async (name: string, email: string, password: string, birthDate?: string) => {
     setIsLoading(true);
     setError(null);
-    
-    try {
-      const response = await fetch('http://localhost:5000/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          name, 
-          username: email, 
-          email, 
+
+      try {
+        await authApi.register({
+          name,
+          email,
           password,
           birth_day: birthDate ? new Date(birthDate).getDate() : null,
           birth_month: birthDate ? new Date(birthDate).getMonth() + 1 : null,
           birth_year: birthDate ? new Date(birthDate).getFullYear() : null,
-        }),
-      });
-
-      if (response.ok) {
-        // Registration successful, redirect to login
-        setError(null);
-        // You could redirect here or show success message
-      } else {
-        const errorData = await response.json();
-        setError(errorData.error || 'Registration failed');
+        });
+      } catch (err) {
+          const error = err as Error;
+          console.error(error.message);
+      } finally {
+        setIsLoading(false);
       }
-    } catch (error) {
-      setError(`Network error. Please try again. ${error}`);
-    } finally {
-      setIsLoading(false);
-    }
   };
 
   // Logout function
   const logout = async () => {
     try {
-      await fetch('http://localhost:5000/api/logout', {
-        method: 'POST',
-        credentials: 'include',
-      });
+      await authApi.logout();
     } catch (error) {
       console.error('Logout error:', error);
     } finally {
