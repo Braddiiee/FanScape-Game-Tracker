@@ -82,3 +82,25 @@ def profile():
         "birth_month": user.birth_month,
         "birth_year": user.birth_year
     })
+
+
+# -----------------------------
+# Create a game
+# -----------------------------
+@api.route('/games', methods=["POST"])
+def create_game(): 
+    user_id = session.get("user_id")
+    if not user_id:
+        return jsonify({"error": "Unauthorized"}), 401
+    
+    data = request.get_json()
+    new_game = Games(
+        match_title = data['match_title'],
+        home_team_id= data['home_team_id'],
+        away_team_id=data['away_team_id'],
+        date=data['date']
+    )
+    db.session.add(new_game)
+    db.session.commit()
+    return jsonify(new_game.to_dict()), 201
+
