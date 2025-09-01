@@ -104,3 +104,10 @@ def create_game():
     db.session.commit()
     return jsonify(new_game.to_dict()), 201
 
+# -----------------------------
+# Get all games
+# -----------------------------
+@api.route("/games", methods=["GET"])
+def get_games():
+    games = Games.query.all()
+    return jsonify([game.to_dict() for game in games])
