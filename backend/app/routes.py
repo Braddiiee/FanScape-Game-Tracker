@@ -119,3 +119,22 @@ def get_games():
 def get_game(game_id):
     game = Games.query.get_or_404(game_id)
     return jsonify(game.to_dict())
+
+
+# -----------------------------
+# Update a game
+# -----------------------------
+@api.route("/games/<int:game_id>", methods=["PUT"])
+def update_game(game_id):
+    user_id = session.get("user_id")
+    if not user_id:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    game = Games.query.get_or_404(game_id)
+    data = request.get_json()
+    game.match_title = data.get('match_title', game.match_title)
+    game.home_team_id = data.get('home_team_id', game.home_team_id)
+    game.away_team_id = data.get('away_team_id', game.away_team_id)
+    game.date = data.get('date', game.date)
+    db.session.commit()
+    return jsonify(game.to_dict())
