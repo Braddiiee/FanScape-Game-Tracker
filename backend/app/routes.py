@@ -138,3 +138,17 @@ def update_game(game_id):
     game.date = data.get('date', game.date)
     db.session.commit()
     return jsonify(game.to_dict())
+
+# -----------------------------
+# Delete a game
+# -----------------------------
+@api.route("/games/<int:game_id>", methods=["DELETE"])
+def delete_game(game_id):
+    user_id = session.get("user_id")
+    if not user_id:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    game = Games.query.get_or_404(game_id)
+    db.session.delete(game)
+    db.session.commit()
+    return jsonify({"message": "Game deleted"})
