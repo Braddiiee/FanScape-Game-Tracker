@@ -111,3 +111,11 @@ def create_game():
 def get_games():
     games = Games.query.all()
     return jsonify([game.to_dict() for game in games])
+
+# -----------------------------
+# Get a single game
+# -----------------------------
+@api.route("/games/<int:game_id>", methods=["GET"])
+def get_game(game_id):
+    game = Games.query.get_or_404(game_id)
+    return jsonify(game.to_dict())
