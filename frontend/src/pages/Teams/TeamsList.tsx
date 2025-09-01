@@ -1,41 +1,86 @@
 import { useParams } from "react-router-dom";
-import { teams } from "../../data/menus";
-import matches from "../../data/matches";
+import { useEffect, useState } from "react";
 import MatchCard from "../../components/MatchCard";
-import useFilters  from "../../context/useFilters";
+import { gamesApi} from "../../services/games"; 
+import { teamsApi } from "../../services/teams";
+import useFilters from "../../context/useFilters";
+// import { useAuth } from "../../context/useAuth";
+
+interface Team {
+  id: number;
+  name: string;
+  slug: string;
+  logo_url?: string;
+}
+
+interface Match {
+  match_id: number;
+  home_team: Team;
+  away_team: Team;
+  match_score?: string;
+  match_status?: string;
+  live_duration_minutes?: number;
+  match_time_utc?: string;
+  match_date?: string;
+  sport?: string;
+}
 
 const TeamPage = () => {
-  //  Get URL parameters
-  const { sport: urlSport, slug } = useParams<{ sport: string; slug: string }>();
-
-  // Get global filters
+  const {  slug } = useParams<{ sport: string; slug: string }>();
   const { sport: filterSport, date: filterDate } = useFilters();
 
-  // Safety check
-  if (!urlSport || !slug) {
-    return <h2>Error: URL parameters are missing.</h2>;
-  }
 
-  // Find the sport category from URL (case-insensitive)
-  const selectedSportCategory = teams[urlSport.toLowerCase()];
-  if (!selectedSportCategory) return <h2>Sport Not Found</h2>;
+  const [team, setTeam] = useState<Team | null>(null);
+  const [matches, setMatches] = useState<Match[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Find the team by slug
-  const team = selectedSportCategory.find((t) => t.slug === slug);
-  if (!team) return <h2>Team Not Found</h2>;
+  useEffect(() => {
+    if (!slug) return;
 
-  // Filter matches for this team
-  const teamMatches = matches
-    .filter(
-      (match) =>
-        match.home_team.team_name === team.name || match.away_team.team_name === team.name
-    )
-    // Apply global filters
-    .filter(
-      (match) =>
-        (!filterSport || match.sport === filterSport) &&
-        (!filterDate || match.match_date === filterDate)
-    );
+    const fetchTeamAndMatches = async () => {
+      try {
+        // Fetch all teams in this sport and find the one matching the slug
+        const teamsResponse = await teamsApi.getAll();
+        const sportTeams = teamsResponse.data.filter((t: Team) => t.slug === slug);
+
+        if (sportTeams.length === 0) {
+          setError("Team Not Found");
+          return;
+        }
+
+        const selectedTeam = sportTeams[0];
+        setTeam(selectedTeam);
+
+        // Fetch all games and filter for this team
+        const gamesResponse = await gamesApi.getAll();
+        const teamGames = gamesResponse.data.filter(
+          (match: Match) =>
+            match.home_team.id === selectedTeam.id ||
+            match.away_team.id === selectedTeam.id
+        );
+
+        // Apply global filters
+        const filteredGames = teamGames.filter(
+          (match: Match) =>
+            (!filterSport || match.sport === filterSport) &&
+            (!filterDate || match.match_date === filterDate)
+        );
+
+        setMatches(filteredGames);
+      } catch (err) {
+        setError(err.message || "Error fetching data");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTeamAndMatches();
+  }, [slug, filterSport, filterDate]);
+
+  if (loading) return <p>Loading team data...</p>;
+  if (error) return <p>{error}</p>;
+  if (!team) return <p>Team not found.</p>;
 
   return (
     <div className="p-6">
@@ -45,9 +90,9 @@ const TeamPage = () => {
       </p>
 
       <h2 className="text-2xl font-semibold mb-4">Matches</h2>
-      {teamMatches.length > 0 ? (
+      {matches.length > 0 ? (
         <ul className="space-y-4">
-          {teamMatches.map((match) => (
+          {matches.map((match) => (
             <MatchCard
               key={match.match_id}
               homeTeam={match.home_team}
