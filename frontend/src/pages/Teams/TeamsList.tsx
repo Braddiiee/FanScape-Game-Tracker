@@ -5,25 +5,26 @@ import { gamesApi} from "../../services/games";
 import { teamsApi } from "../../services/teams";
 import useFilters from "../../context/useFilters";
 // import { useAuth } from "../../context/useAuth";
+// TeamsList.tsx
+import type { Team, Match } from "../../types";
 
-interface Team {
-  id: number;
-  name: string;
-  slug: string;
-  logo_url?: string;
-}
 
-interface Match {
-  match_id: number;
-  home_team: Team;
-  away_team: Team;
-  match_score?: string;
-  match_status?: string;
-  live_duration_minutes?: number;
-  match_time_utc?: string;
-  match_date?: string;
-  sport?: string;
-}
+
+// interface MatchScore {
+//   home_score: string;
+//   away_score: string;
+// }
+// interface Match {
+//   match_id: number;
+//   home_team: Team;
+//   away_team: Team;
+//   match_score: MatchScore;
+//   match_status: string;
+//   live_duration_minutes: number;
+//   match_time_utc: string;
+//   match_date: string;
+//   sport?: string;
+// }
 
 const TeamPage = () => {
   const {  slug } = useParams<{ sport: string; slug: string }>();
@@ -56,8 +57,8 @@ const TeamPage = () => {
         const gamesResponse = await gamesApi.getAll();
         const teamGames = gamesResponse.data.filter(
           (match: Match) =>
-            match.home_team.id === selectedTeam.id ||
-            match.away_team.id === selectedTeam.id
+            match.home_team.team_id === selectedTeam.id ||
+            match.away_team.team_id === selectedTeam.id
         );
 
         // Apply global filters
@@ -69,7 +70,11 @@ const TeamPage = () => {
 
         setMatches(filteredGames);
       } catch (err) {
-        setError(err.message || "Error fetching data");
+        if (err instanceof Error) {
+          console.error(err.message);
+        } else {
+          console.error('Unknown error', err);
+        }
       } finally {
         setLoading(false);
       }
@@ -84,9 +89,9 @@ const TeamPage = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-4xl font-bold mb-4">{team.name}</h1>
+      <h1 className="text-4xl font-bold mb-4">{team.team_name}</h1>
       <p className="text-lg text-gray-600 mb-6">
-        Showing matches for {team.name}.
+        Showing matches for {team.team_name}.
       </p>
 
       <h2 className="text-2xl font-semibold mb-4">Matches</h2>
