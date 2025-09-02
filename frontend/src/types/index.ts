@@ -15,6 +15,7 @@ export interface Sport  {
 export type Team = {
     team_id: string;
     team_name: string;
+    slug?: string;
 }
 
 export type Penalties = {
