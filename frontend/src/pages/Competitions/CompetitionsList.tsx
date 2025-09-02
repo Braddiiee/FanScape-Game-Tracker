@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import MatchCard from "../../components/MatchCard";
 import type { Match } from "../../types";
 import useFilters from "../../context/useFilters";
-import { gamesApi } from "../../services"; // your axios instance
+import { gamesApi } from "../../services/games" // your axios instance
 
 const CompetitionsList: React.FC = () => {
   const { sport, date } = useFilters(); // ✅ Global filters
@@ -25,8 +25,12 @@ const CompetitionsList: React.FC = () => {
         );
 
         setMatches(fetchedMatches);
-      } catch (err: any) {
-        setError(err.message || "Failed to fetch matches");
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+            console.error(err.message);
+        } else {
+            console.error('Unknown error', err);
+        }
       } finally {
         setLoading(false);
       }
