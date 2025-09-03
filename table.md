@@ -6,6 +6,7 @@
 - **Backend**: Flask Python API with SQLite database and session-based authentication
 - **Architecture**: RESTful API with comprehensive authentication system
 
+
 ## Current File Structure Analysis
 
 ### Root Directory
