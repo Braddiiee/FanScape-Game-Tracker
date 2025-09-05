@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify, session
+from app.models import Teams
 from . import db, bcrypt
 from .models import User, Games, Teams 
 
@@ -152,3 +153,21 @@ def delete_game(game_id):
     db.session.delete(game)
     db.session.commit()
     return jsonify({"message": "Game deleted"})
+
+
+
+# -----------------------------
+# Teams CRUD Operations
+# -----------------------------
+
+@api.route('/teams', methods=['GET'])
+def get_teams():
+    teams = Teams.query.all()
+    return jsonify([{
+        'id': t.id,
+        'team_name': t.team_name,
+        'logo_url': t.logo_url
+    } for t in teams])
+
+
+
