@@ -239,3 +239,15 @@ def update_team(team_id):
     'team_name': team.team_name,
     'logo_url': team.logo_url
     })
+
+@api.route('/teams/<int:team_id>', methods=['DELETE'])
+def delete_team(team_id):
+    user_id = session.get('user_id')
+    if not user_id:
+        return jsonify({'error': 'Unauthorized'}), 401
+
+
+    team = Teams.query.get_or_404(team_id)
+    db.session.delete(team)
+    db.session.commit()
+    return jsonify({'message': 'Team deleted'})
