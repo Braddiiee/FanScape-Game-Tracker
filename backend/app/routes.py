@@ -170,4 +170,34 @@ def get_teams():
     } for t in teams])
 
 
+@api.route('/teams', methods=['POST'])
+def create_team():
+    user_id = session.get('user_id')
+    if not user_id:
+        return jsonify({'error': 'Unauthorized'}), 401
+
+
+    data = request.get_json() or {}
+    if not data.get('team_name'):
+        return jsonify({'error': 'team_name is required'}), 400
+
+
+    if Teams.query.filter_by(team_name=data['team_name']).first():
+        return jsonify({'error': 'Team already exists'}), 400
+
+
+    new_team = Teams(
+    team_name=data['team_name'],
+    logo_url=data.get('logo_url')
+    )
+    db.session.add(new_team)
+    db.session.commit()
+
+
+    return jsonify({
+    'id': new_team.id,
+    'team_name': new_team.team_name,
+    'logo_url': new_team.logo_url
+    }), 201
+
 
