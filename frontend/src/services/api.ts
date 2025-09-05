@@ -5,21 +5,31 @@ const api = axios.create({
   withCredentials: true,
 });
 
-export interface RegisterPayload {
-  name: string;
-  username?: string;
-  email: string;
-  password: string;
-  birth_day?: number | null;
-  birth_month?: number | null;
-  birth_year?: number | null;
+export interface LoginResponse {
+  message: string;
+  user : {
+    id: number;
+    username: string;
+    email: string;
+    birthDate?: string | null;
+  };
+}
+
+export interface RegisterResponse {
+  message: string;
+  user: {
+    id: number;
+    username: string;
+    email: string;
+    birthDate?: string | null;
+  }
 }
 
 // Auth endpoints
 export const authApi = {
   login: (username: string, password: string) => 
     api.post("/login", { username, password }),
-  register: (data: RegisterPayload) =>
+  register: (data: RegisterResponse) =>
     api.post("/register", data),
   logout: () => api.post("/logout"),
   profile: () => api.post("/profile"),
