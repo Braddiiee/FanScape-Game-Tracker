@@ -1,17 +1,25 @@
 // services/teams.ts
 import api from "./api";
 
-export interface TeamPayload {
-  name: string;
-  city: string;
-  founded_year?: number;
+export interface Team {
+  id: number;
+  team_name: string;
+  logo_url? : string;
 }
+
+export interface CreateTeamPayload {
+  teams_name: string;
+  logo_url?: string;
+}
+
 
 export const teamsApi = {
   getAll: () => api.get("/teams"),
   getOne: (id: number) => api.get(`/teams/${id}`),
-  create: (data: TeamPayload) => api.post("/teams", data),
-  update: (id: number, data: Partial<TeamPayload>) =>
+  create: (data: CreateTeamPayload) => api.post("/teams", data),
+  update: (id: number, data: Partial<CreateTeamPayload>) =>
     api.put(`/teams/${id}`, data),
   delete: (id: number) => api.delete(`/teams/${id}`),
 };
+
+export default teamsApi;
