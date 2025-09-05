@@ -201,3 +201,11 @@ def create_team():
     }), 201
 
 
+@api.route('/teams/<int:team_id>', methods=['GET'])
+def get_team(team_id):
+    team = Teams.query.get_or_404(team_id)
+    return jsonify({
+    'id': team.id,
+    'team_name': team.team_name,
+    'logo_url': team.logo_url
+    })
