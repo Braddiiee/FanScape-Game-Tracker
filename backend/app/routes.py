@@ -209,3 +209,33 @@ def get_team(team_id):
     'team_name': team.team_name,
     'logo_url': team.logo_url
     })
+
+
+@api.route('/teams/<int:team_id>', methods=['PUT'])
+def update_team(team_id):
+    user_id = session.get('user_id')
+    if not user_id:
+        return jsonify({'error': 'Unauthorized'}), 401
+
+
+    team = Teams.query.get_or_404(team_id)
+    data = request.get_json() or {}
+
+
+    if 'team_name' in data:
+        existing = Teams.query.filter_by(team_name=data['team_name']).first()
+    if existing and existing.id != team_id:
+        return jsonify({'error': 'Team name already exists'}), 400
+    team.team_name = data['team_name']
+
+
+    if 'logo_url' in data:
+        team.logo_url = data['logo_url']
+
+
+    db.session.commit()
+    return jsonify({
+    'id': team.id,
+    'team_name': team.team_name,
+    'logo_url': team.logo_url
+    })
