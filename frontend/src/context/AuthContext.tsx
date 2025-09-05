@@ -12,6 +12,22 @@ interface User {
   birthDate?: string;
 }
 
+interface TempUser {
+  name: string;
+  username: string;
+  email: string;
+  password: string;
+  birth_day?: number;
+  birth_month?: number;
+  birth_year?: number;
+}
+
+interface TempRegisterResponse {
+  data: {
+    user: User;
+    message?: string;
+  };
+}
 
 // Props for the provider component
 interface AuthProviderProps {
@@ -48,10 +64,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setError(null);
     
     try {
-      await authApi.login(email, password);
-      await checkAuthStatus();
+      const response = await authApi.login(email, password);
+      setUser(response.data.user);
+      return response.data;
     } catch (err) {
         const error = err as Error;
+        setError(error.message)
         console.error(error.message);
     } finally {
       setIsLoading(false);
@@ -59,25 +77,29 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   // Register function
-  const register = async (name: string, email: string, password: string, birthDate?: string) => {
+  const register = async (name: string, email: string, password: string, birthDate?: string): Promise<void> => {
     setIsLoading(true);
     setError(null);
 
-      try {
-        await authApi.register({
-          name,
-          email,
-          password,
-          birth_day: birthDate ? new Date(birthDate).getDate() : null,
-          birth_month: birthDate ? new Date(birthDate).getMonth() + 1 : null,
-          birth_year: birthDate ? new Date(birthDate).getFullYear() : null,
-        });
-      } catch (err) {
-          const error = err as Error;
-          console.error(error.message);
-      } finally {
-        setIsLoading(false);
-      }
+    try {
+      const payload : TempUser = {
+        name, 
+        username: email.split('@')[0],
+        email,
+        password, 
+        birth_day: birthDate ? new Date(birthDate).getDate(): undefined,
+        birth_month: birthDate ? new Date(birthDate).getMonth() + 1: undefined,
+        birth_year: birthDate ? new Date(birthDate).getFullYear(): undefined,
+      };
+      const response = await authApi.register(payload) as TempRegisterResponse;
+      setUser(response.data.user);
+      return;
+    } catch (err) {
+      const error = err as Error;
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   // Logout function
